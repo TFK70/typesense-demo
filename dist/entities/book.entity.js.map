@@ -1,0 +1,1 @@
+{"version":3,"file":"book.entity.js","sourceRoot":"","sources":["../../entities/book.entity.ts"],"names":[],"mappings":";;;;;;;;;;;;AACA,qCAAiE;AAGjE,IAAa,IAAI,GAAjB,MAAa,IAAI;CAShB,CAAA;AAPG;IADC,gCAAsB,EAAE;;gCACd;AAGX;IADC,gBAAM,CAAC,EAAE,MAAM,EAAE,GAAG,EAAE,CAAC;;kCACX;AAGb;IADC,gBAAM,CAAC,MAAM,CAAC;;oCACA;AARN,IAAI;IADhB,gBAAM,EAAE;GACI,IAAI,CAShB;AATY,oBAAI"}
