@@ -1,0 +1,1 @@
+{"version":3,"file":"books.schema.js","sourceRoot":"","sources":["../../schemas/books.schema.ts"],"names":[],"mappings":";;;AAAA,MAAM,WAAW,GAAG;IAChB,IAAI,EAAE,OAAO;IACb,mBAAmB,EAAE,MAAM;IAC3B,MAAM,EAAE;QACJ,EAAE,IAAI,EAAE,MAAM,EAAE,IAAI,EAAE,QAAQ,EAAE;QAChC,EAAE,IAAI,EAAE,QAAQ,EAAE,IAAI,EAAE,QAAQ,EAAE;KACrC;CACJ,CAAA;AAEQ,kCAAW"}

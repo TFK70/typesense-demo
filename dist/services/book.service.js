@@ -11,13 +11,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookService = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("typeorm");
+const typeorm_1 = require("@nestjs/typeorm");
+const nestjs_typesense_1 = require("@atls/nestjs-typesense");
+const typeorm_2 = require("typeorm");
+const typesense_1 = require("typesense");
+const entities_1 = require("../entities");
+const schemas_1 = require("../schemas");
 let BookService = class BookService {
-    constructor(bookRepository) {
+    constructor(bookRepository, typesenseMetadataRegistry, client) {
         this.bookRepository = bookRepository;
+        this.typesenseMetadataRegistry = typesenseMetadataRegistry;
+        this.client = client;
+        this.initTarget();
+        this.typesense = client;
+        typesenseMetadataRegistry.addSchema(this.booksSchemaTarget, schemas_1.booksSchema);
+    }
+    initTarget() {
+        class Target {
+            constructor(name, author) {
+                this.name = name;
+                this.author = author;
+            }
+        }
+        this.booksSchemaTarget = Target;
     }
     async findAll() {
         return this.bookRepository.find();
@@ -28,11 +48,31 @@ let BookService = class BookService {
         book.author = 'Samoylov';
         await this.bookRepository.save(book);
     }
+    async initCollection() {
+        const names = ['alpha', 'beta', 'omega', 'shadow'];
+        const authors = ['ahpla', 'ateb', 'agemo', 'raze'];
+        const books = names.reduce((result, name, idx) => [...result, { name, author: authors[idx] }], []);
+        books.forEach(book => {
+            this.typesense.collections('books').documents().create(book);
+        });
+    }
+    async findExact() {
+        const searchParams = {
+            q: 'shadow',
+            query_by: 'name'
+        };
+        this.typesense.collections('books').documents().search(searchParams).then(result => {
+            result.hits.forEach(hit => {
+                console.log(hit.document);
+            });
+        });
+    }
 };
 BookService = __decorate([
     common_1.Injectable(),
-    __param(0, common_1.Inject('BOOK_REPOSITORY')),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
+    __param(0, typeorm_1.InjectRepository(entities_1.Book)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        nestjs_typesense_1.TypesenseMetadataRegistry, typeof (_a = typeof typesense_1.Client !== "undefined" && typesense_1.Client) === "function" ? _a : Object])
 ], BookService);
 exports.BookService = BookService;
 //# sourceMappingURL=book.service.js.map

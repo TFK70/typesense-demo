@@ -1,6 +1,14 @@
 version: '3.7'
 
 services:
+  typesense:
+    image: typesense/typesense:0.21.0
+    environment:
+      - TYPESENSE_API_KEY=testkey
+      - TYPESENSE_DATA_DIR=/
+    ports:
+      - 8108:8108
+
   db:
     image: bitnami/postgresql
     environment:
@@ -9,13 +17,16 @@ services:
       - POSTGRESQL_DATABASE=db
     ports:
       - 5432:5432
+
   gateway:
     image: node:alpine
     working_dir: /workspace
     volumes:
       - ./:/workspace
     entrypoint: yarn dev
+    environment:
+      - TYPESENSE_API_KEY=testkey
     depends_on:
       - db
     ports:
-      - '3001:3001'
+      - 3001:3001

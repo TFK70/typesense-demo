@@ -35,9 +35,7 @@ BookModule = __decorate([
         ],
         exports: [typeorm_1.TypeOrmModule],
         controllers: [controllers_1.BookController],
-        providers: [
-            services_1.BookService,
-        ],
+        providers: [services_1.BookService, entities_1.Book],
     })
 ], BookModule);
 exports.BookModule = BookModule;

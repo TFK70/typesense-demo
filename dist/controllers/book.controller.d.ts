@@ -4,5 +4,7 @@ declare class BookController {
     constructor(bookService: BookService);
     findAll(): void;
     createBooks(): void;
+    initCollection(): void;
+    findExact(): void;
 }
 export { BookController };

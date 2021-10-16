@@ -18,17 +18,29 @@ let BookController = class BookController {
         this.bookService = bookService;
     }
     findAll() {
-        this.bookService.findAll()
+        this.bookService
+            .findAll()
             .then((books) => {
             console.log(books);
         })
-            .catch(e => {
+            .catch((e) => {
             throw new Error(e);
         });
     }
     createBooks() {
-        this.bookService.createBook()
-            .catch((e) => {
+        this.bookService.createBook().catch((e) => {
+            throw new Error(e);
+        });
+    }
+    initCollection() {
+        this.bookService.initCollection()
+            .catch(e => {
+            throw new Error(e);
+        });
+    }
+    findExact() {
+        this.bookService.findExact()
+            .catch(e => {
             throw new Error(e);
         });
     }
@@ -45,6 +57,18 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], BookController.prototype, "createBooks", null);
+__decorate([
+    common_2.Get('init-collection'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], BookController.prototype, "initCollection", null);
+__decorate([
+    common_2.Get('find-exact'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], BookController.prototype, "findExact", null);
 BookController = __decorate([
     common_1.Controller('book'),
     __metadata("design:paramtypes", [services_1.BookService])
