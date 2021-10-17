@@ -65,20 +65,16 @@ export class BookService {
     })
   }
 
-  async findExact() {
+  async findExact(query): Promise<Book[]> {
     const searchParams = {
-      q: 'shadow',
+      q: query,
       query_by: 'name',
     }
 
-    this.typesense
+    return this.typesense
       .collections('books')
       .documents()
       .search(searchParams)
-      .then((result) => {
-        result.hits.forEach((hit) => {
-          console.log(hit.document)
-        })
-      })
+      .then((result) => result?.hits?.map((hit) => hit.document))
   }
 }

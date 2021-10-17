@@ -9,8 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const graphql_1 = require("@nestjs/graphql");
 const nestjs_typesense_1 = require("@atls/nestjs-typesense");
-const nestjs_typesense_typeorm_1 = require("@atls/nestjs-typesense-typeorm");
 const services_1 = require("../services");
 const controllers_1 = require("../controllers");
 const entities_1 = require("../entities");
@@ -29,9 +29,9 @@ BookModule = __decorate([
                 entities: [entities_1.Book],
                 synchronize: true,
             }),
+            graphql_1.GraphQLModule.forRoot(),
             typeorm_1.TypeOrmModule.forFeature([entities_1.Book]),
             nestjs_typesense_1.TypesenseModule.register(),
-            nestjs_typesense_typeorm_1.TypesenseTypeOrmModule.register(),
         ],
         exports: [typeorm_1.TypeOrmModule],
         controllers: [controllers_1.BookController],

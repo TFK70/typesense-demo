@@ -1,4 +1,5 @@
 const searchInput = document.getElementById('search')
+const searchButton = document.getElementById('search__button')
 const resultsList = document.getElementById('results__list')
 
 const headers = {
@@ -7,24 +8,20 @@ const headers = {
   'Access-Control-Allow-Methods': '*',
 }
 
-const renderResponse = (response) => {
-  response.hits.forEach((hit) => {
-    resultsList.appendChild(`<li>${hit.document.name}</li>`)
-  })
+const renderResponse = (res) => {
+  console.log('resp', res)
 }
 
 const query = (payload) => {
-  resultsList.innerHTML('')
-
-  fetch(`http://localhost:4000/search?value=${payload}`, { headers })
+  fetch(`http://localhost:4000/book/${payload}`, { headers })
     .then(renderResponse)
     .catch((e) => {
       throw new Error(e)
     })
 }
 
-const onSearch = (event) => {
-  query(event.target.value)
+const onSearch = () => {
+  query(searchInput.value)
 }
 
-searchInput.addEventListener('change', onSearch)
+searchButton.addEventListener('click', onSearch)

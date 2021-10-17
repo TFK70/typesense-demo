@@ -6,8 +6,8 @@ const booksSchema = {
     defaultSortingField: 'name',
     fields: [
         { name: 'name', type: 'string' },
-        { name: 'author', type: 'string' }
-    ]
+        { name: 'author', type: 'string' },
+    ],
 };
 exports.booksSchema = booksSchema;
 //# sourceMappingURL=books.schema.js.map

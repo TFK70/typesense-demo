@@ -52,18 +52,25 @@ let BookService = class BookService {
         const names = ['alpha', 'beta', 'omega', 'shadow'];
         const authors = ['ahpla', 'ateb', 'agemo', 'raze'];
         const books = names.reduce((result, name, idx) => [...result, { name, author: authors[idx] }], []);
-        books.forEach(book => {
+        books.forEach((book) => {
             this.typesense.collections('books').documents().create(book);
         });
     }
-    async findExact() {
+    async findExact(query) {
         const searchParams = {
-            q: 'shadow',
-            query_by: 'name'
+            q: query,
+            query_by: 'name',
         };
-        this.typesense.collections('books').documents().search(searchParams).then(result => {
-            result.hits.forEach(hit => {
+        return this.typesense
+            .collections('books')
+            .documents()
+            .search(searchParams)
+            .then((result) => {
+            var _a;
+            console.log('results', result);
+            return (_a = result === null || result === void 0 ? void 0 : result.hits) === null || _a === void 0 ? void 0 : _a.map((hit) => {
                 console.log(hit.document);
+                return hit.document;
             });
         });
     }

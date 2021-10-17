@@ -8,10 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookController = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
+const common_3 = require("@nestjs/common");
 const services_1 = require("../services");
 let BookController = class BookController {
     constructor(bookService) {
@@ -33,14 +37,12 @@ let BookController = class BookController {
         });
     }
     initCollection() {
-        this.bookService.initCollection()
-            .catch(e => {
+        this.bookService.initCollection().catch((e) => {
             throw new Error(e);
         });
     }
-    findExact() {
-        this.bookService.findExact()
-            .catch(e => {
+    async findExact(query) {
+        return await this.bookService.findExact(query).catch((e) => {
             throw new Error(e);
         });
     }
@@ -64,10 +66,11 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BookController.prototype, "initCollection", null);
 __decorate([
-    common_2.Get('find-exact'),
+    common_2.Get(':query'),
+    __param(0, common_3.Param('query')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
 ], BookController.prototype, "findExact", null);
 BookController = __decorate([
     common_1.Controller('book'),

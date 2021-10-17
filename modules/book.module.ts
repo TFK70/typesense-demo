@@ -1,11 +1,11 @@
-import { Module }                 from '@nestjs/common'
-import { TypeOrmModule }          from '@nestjs/typeorm'
-import { TypesenseModule }        from '@atls/nestjs-typesense'
-import { TypesenseTypeOrmModule } from '@atls/nestjs-typesense-typeorm'
+import { Module }          from '@nestjs/common'
+import { TypeOrmModule }   from '@nestjs/typeorm'
+import { GraphQLModule }   from '@nestjs/graphql'
+import { TypesenseModule } from '@atls/nestjs-typesense'
 
-import { BookService }            from '../services'
-import { BookController }         from '../controllers'
-import { Book }                   from '../entities'
+import { BookService }     from '../services'
+import { BookController }  from '../controllers'
+import { Book }            from '../entities'
 
 @Module({
   imports: [
@@ -19,9 +19,9 @@ import { Book }                   from '../entities'
       entities: [Book],
       synchronize: true,
     }),
+    GraphQLModule.forRoot(),
     TypeOrmModule.forFeature([Book]),
     TypesenseModule.register(),
-    TypesenseTypeOrmModule.register(),
   ],
   exports: [TypeOrmModule],
   controllers: [BookController],

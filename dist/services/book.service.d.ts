@@ -13,5 +13,5 @@ export declare class BookService {
     findAll(): Promise<Book[]>;
     createBook(): Promise<void>;
     initCollection(): Promise<void>;
-    findExact(): Promise<void>;
+    findExact(query: any): Promise<Book[]>;
 }

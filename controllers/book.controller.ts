@@ -1,5 +1,6 @@
 import { Controller }  from '@nestjs/common'
 import { Get }         from '@nestjs/common'
+import { Param }       from '@nestjs/common'
 
 import { BookService } from '../services'
 
@@ -33,9 +34,9 @@ class BookController {
     })
   }
 
-  @Get('find-exact')
-  findExact() {
-    this.bookService.findExact().catch((e) => {
+  @Get(':query')
+  async findExact(@Param('query') query: string) {
+    return this.bookService.findExact(query).catch((e) => {
       throw new Error(e)
     })
   }

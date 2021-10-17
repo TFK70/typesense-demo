@@ -5,6 +5,6 @@ declare class BookController {
     findAll(): void;
     createBooks(): void;
     initCollection(): void;
-    findExact(): void;
+    findExact(query: string): Promise<import("../entities").Book[]>;
 }
 export { BookController };

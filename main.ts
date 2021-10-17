@@ -5,7 +5,9 @@ import { MainModule }  from './modules'
 const bootstrap = async () => {
   const app = await NestFactory.create(MainModule)
 
-  app.listen(4000)
+  app.enableCors()
+
+  await app.listen(4000)
 }
 
 bootstrap()

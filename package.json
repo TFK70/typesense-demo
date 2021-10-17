@@ -4,20 +4,24 @@
   "scripts": {
     "dev": "nest start"
   },
-  "devDependencies": {
+  "dependencies": {
     "@atls/actl-cli": "0.4.48",
     "@atls/nestjs-typesense": "^0.0.3",
     "@atls/nestjs-typesense-typeorm": "^0.0.2",
     "@nestjs/cli": "^8.0.6",
     "@nestjs/common": "^8.0.6",
     "@nestjs/core": "^8.0.6",
-    "@nestjs/graphql": "^9.0.6",
+    "@nestjs/graphql": "8",
     "@nestjs/microservices": "^8.0.6",
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/typeorm": "^8.0.2",
     "@types/node": "^16.11.0",
     "@types/pg": "^8",
+    "apollo-server-core": "^3.4.0",
+    "apollo-server-express": "^3.4.0",
+    "graphql": "^15.6.1",
     "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
     "source-map-support": "^0.5.20",
     "typeorm": "^0.2.38",
