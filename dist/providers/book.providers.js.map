@@ -1,1 +1,0 @@
-{"version":3,"file":"book.providers.js","sourceRoot":"","sources":["../../providers/book.providers.ts"],"names":[],"mappings":";;;AACA,0CAAwC;AAE3B,QAAA,aAAa,GAAG;IAC3B;QACE,OAAO,EAAE,iBAAiB;QAC1B,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CAAC,UAAU,CAAC,aAAa,CAAC,eAAI,CAAC;QACtE,MAAM,EAAE,CAAC,qBAAqB,CAAC;KAChC;CACF,CAAA"}

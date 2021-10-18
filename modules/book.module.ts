@@ -6,6 +6,7 @@ import { TypesenseModule } from '@atls/nestjs-typesense'
 import { BookService }     from '../services'
 import { BookController }  from '../controllers'
 import { Book }            from '../entities'
+import { BookResolver }    from '../resolvers'
 
 @Module({
   imports: [
@@ -19,12 +20,14 @@ import { Book }            from '../entities'
       entities: [Book],
       synchronize: true,
     }),
-    GraphQLModule.forRoot(),
+    GraphQLModule.forRoot({
+      autoSchemaFile: 'schema.gql',
+    }),
     TypeOrmModule.forFeature([Book]),
     TypesenseModule.register(),
   ],
   exports: [TypeOrmModule],
   controllers: [BookController],
-  providers: [BookService, Book],
+  providers: [BookService, Book, BookResolver],
 })
 export class BookModule {}

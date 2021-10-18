@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 import { Injectable }                from '@nestjs/common'
 import { InjectRepository }          from '@nestjs/typeorm'
 import { TypesenseMetadataRegistry } from '@atls/nestjs-typesense'
@@ -52,8 +54,8 @@ export class BookService {
   }
 
   async initCollection() {
-    const names = ['alpha', 'beta', 'omega', 'shadow']
-    const authors = ['ahpla', 'ateb', 'agemo', 'raze']
+    const names = ['alpha', 'beta', 'omega']
+    const authors = ['ahpla', 'ateb', 'agemo']
 
     const books = names.reduce(
       (result, name, idx) => [...result, { name, author: authors[idx] }],

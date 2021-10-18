@@ -12,9 +12,6 @@ class BookController {
   findAll() {
     this.bookService
       .findAll()
-      .then((books) => {
-        console.log(books)
-      })
       .catch((e) => {
         throw new Error(e)
       })
