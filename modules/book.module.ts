@@ -1,12 +1,15 @@
-import { Module }          from '@nestjs/common'
-import { TypeOrmModule }   from '@nestjs/typeorm'
-import { GraphQLModule }   from '@nestjs/graphql'
-import { TypesenseModule } from '@atls/nestjs-typesense'
+import { Module }                 from '@nestjs/common'
+import { TypeOrmModule }          from '@nestjs/typeorm'
+import { GraphQLModule }          from '@nestjs/graphql'
+import { TypesenseModule }        from '@atls/nestjs-typesense'
+import { TypesenseTypeOrmModule } from '@atls/nestjs-typesense-typeorm'
+import { Connection }             from 'typeorm'
 
-import { BookService }     from '../services'
-import { BookController }  from '../controllers'
-import { Book }            from '../entities'
-import { BookResolver }    from '../resolvers'
+import { BookService }            from '../services'
+import { BookController }         from '../controllers'
+import { Book }                   from '../entities'
+import { BookResolver }           from '../resolvers'
+import { TestModule }             from './test.module'
 
 @Module({
   imports: [
@@ -25,6 +28,8 @@ import { BookResolver }    from '../resolvers'
     }),
     TypeOrmModule.forFeature([Book]),
     TypesenseModule.register(),
+    TestModule,
+    // TypesenseTypeOrmModule.register()
   ],
   exports: [TypeOrmModule],
   controllers: [BookController],
