@@ -24,7 +24,7 @@ export class BookService {
     this.initTarget()
     this.typesense = client
 
-    typesenseMetadataRegistry.addSchema(this.booksSchemaTarget, booksSchema)
+    typesenseMetadataRegistry.addSchema(Book, booksSchema)
   }
 
   private initTarget(): void {

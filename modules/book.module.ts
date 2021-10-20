@@ -9,7 +9,6 @@ import { BookService }            from '../services'
 import { BookController }         from '../controllers'
 import { Book }                   from '../entities'
 import { BookResolver }           from '../resolvers'
-import { TestModule }             from './test.module'
 
 @Module({
   imports: [
@@ -28,8 +27,7 @@ import { TestModule }             from './test.module'
     }),
     TypeOrmModule.forFeature([Book]),
     TypesenseModule.register(),
-    TestModule,
-    // TypesenseTypeOrmModule.register()
+    TypesenseTypeOrmModule.register(),
   ],
   exports: [TypeOrmModule],
   controllers: [BookController],

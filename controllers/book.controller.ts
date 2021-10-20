@@ -10,9 +10,12 @@ class BookController {
 
   @Get('all')
   findAll() {
-    this.bookService.findAll().catch((e) => {
-      throw new Error(e)
-    })
+    this.bookService
+      .findAll()
+      .catch((e) => {
+        throw new Error(e)
+      })
+      .then((result) => console.log(result))
   }
 
   @Get('create')
