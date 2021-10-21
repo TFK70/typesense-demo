@@ -3,7 +3,6 @@ import { TypeOrmModule }          from '@nestjs/typeorm'
 import { GraphQLModule }          from '@nestjs/graphql'
 import { TypesenseModule }        from '@atls/nestjs-typesense'
 import { TypesenseTypeOrmModule } from '@atls/nestjs-typesense-typeorm'
-import { Connection }             from 'typeorm'
 
 import { BookService }            from '../services'
 import { BookController }         from '../controllers'

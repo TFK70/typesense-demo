@@ -21,25 +21,9 @@ export class BookService {
     private typesenseMetadataRegistry: TypesenseMetadataRegistry,
     private client: Client
   ) {
-    this.initTarget()
     this.typesense = client
 
     typesenseMetadataRegistry.addSchema(Book, booksSchema)
-  }
-
-  private initTarget(): void {
-    class Target {
-      name: string
-
-      author: string
-
-      constructor(name, author) {
-        this.name = name
-        this.author = author
-      }
-    }
-
-    this.booksSchemaTarget = Target
   }
 
   async findAll(): Promise<Book[]> {
@@ -48,8 +32,8 @@ export class BookService {
 
   async createBook() {
     const book = this.bookRepository.create()
-    book.name = 'Kirill'
-    book.author = 'Samoylov'
+    book.name = 'Stub name'
+    book.author = 'Stub author'
     await this.bookRepository.save(book)
   }
 
@@ -72,7 +56,6 @@ export class BookService {
       q: query,
       query_by: 'name',
     }
-
     return this.typesense
       .collections('books')
       .documents()

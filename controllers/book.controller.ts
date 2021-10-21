@@ -15,6 +15,7 @@ class BookController {
       .catch((e) => {
         throw new Error(e)
       })
+      // eslint-disable-next-line
       .then((result) => console.log(result))
   }
 
